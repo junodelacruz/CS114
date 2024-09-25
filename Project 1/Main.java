@@ -21,10 +21,15 @@ public class Main {
             }
 
             //Entering point
-            findEntrance(maze);
+            int[] entrance = findEntrance(maze);
 
             //Traversing the 2D maze
-            // traverse(findEntrance(maze)[0], find);
+            if(traverse(maze, entrance[0], entrance[1])){
+                System.out.println("Maze solved!");
+            }
+            else {
+                System.out.println("Solution not found.");
+            }
       
 
        }catch (IOException error) {
@@ -46,8 +51,30 @@ public class Main {
         return start;
     }
 
-    // public static boolean traverse(){
+    public static boolean traverse(char[][] maze, int row, int col){
+        if(row<0 || col<0 || row>=maze.length || col>=maze[row].length || maze[row][col] == 'X' || maze[row][col] == '.'){
+            return false;
+        }
 
-    // }
+        if(maze[row][col] == '-'){
+            return true;
+        }
+
+        System.out.println(row + ", " + col);
+        if(maze[row][col] == ' '){
+            maze[row][col] = '+';
+    
+            if (traverse(maze, row - 1, col) ||   //UP
+                traverse(maze,row + 1, col) ||    //DOWN
+                traverse(maze, row, col + 1) ||   //RIGHT
+                traverse(maze, row, col - 1)){    //LEFT
+                    return true; 
+            }else{
+                maze[row][col] = '.';
+            }
+        }   
+        
+        return false;
+    }
     
 }
