@@ -6,6 +6,7 @@ public class Main {
     private static int rows;
     private static int columns;
     private static char[][] maze;
+    private static int[] entrance;
     public static void main(String args[]){
         try(BufferedReader read = new BufferedReader(new FileReader("maze.dat"))) {
             //Create 2D array for maze
@@ -21,8 +22,8 @@ public class Main {
             }
 
             //Entering point
-            int[] entrance = findEntrance(maze);
-
+            entrance = findEntrance(maze);
+            
             //Traversing the 2D maze
             if(traverse(maze, entrance[0], entrance[1])){
                 System.out.println("Maze solved!");
@@ -45,6 +46,7 @@ public class Main {
                 if(maze[i][j] == '+'){
                     start[0] = i;
                     start[1] = j;
+                    System.out.println(i + " " + j);
                 }
             }
         }
@@ -52,28 +54,31 @@ public class Main {
     }
 
     public static boolean traverse(char[][] maze, int row, int col){
-        if(row<0 || col<0 || row>=maze.length || col>=maze[row].length || maze[row][col] == 'X' || maze[row][col] == '.'){
+        if(row<0 || col<0 || row>=maze.length || col>=maze[row].length || maze[row][col] == 'X' || maze[row][col] == '.' || (maze[row][col] == '+' && (row != entrance[0] && col != entrance[1])))
+        {
             return false;
         }
 
-        if(maze[row][col] == '-'){
+        if(maze[row][col] == '-')
+        {
             return true;
         }
 
         System.out.println(row + ", " + col);
-        if(maze[row][col] == ' '){
+        if(maze[row][col] == ' ' || maze[row][col] == '+')
+        {   
             maze[row][col] = '+';
-    
-            if (traverse(maze, row - 1, col) ||   //UP
-                traverse(maze,row + 1, col) ||    //DOWN
+            if (traverse(maze, row + 1, col) ||   //DOWN
+                traverse(maze,row - 1, col) ||    //UP
                 traverse(maze, row, col + 1) ||   //RIGHT
-                traverse(maze, row, col - 1)){    //LEFT
+                traverse(maze, row, col - 1))     //LEFT
+                {    
                     return true; 
-            }else{
-                maze[row][col] = '.';
-            }
-        }   
-        
+                }
+                else{
+                    maze[row][col] = '.';
+                } 
+        }
         return false;
     }
     
