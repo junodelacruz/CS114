@@ -1,3 +1,7 @@
+//Juno Dela Cruz
+//CS114001
+//Professor Kapleau
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,25 +20,29 @@ public class Main {
             columns = Integer.parseInt(firstLine[1]);
             maze = new char[rows][columns];
             
-            for(int i = 0; i < rows; i++){
+            for(int i = 0; i < rows; i++)
+            {
                 line = read.readLine();
                 maze[i] = line.toCharArray();
             }
 
-            //Entering point
+            //entering point
             entrance = findEntrance(maze);
             
-            //Traversing the 2D maze
-            if(traverse(maze, entrance[0], entrance[1])){
+            //traversing the 2D maze
+            if(traverse(maze, entrance[0], entrance[1]))
+            {
                 System.out.println("Maze solved!");
-                printMaze(maze);
+                printMaze(maze); //printing the maze
             }
-            else {
+            else 
+            {
                 System.out.println("Solution not found.");
             }
       
 
-       }catch (IOException error) {
+       }catch (IOException error) 
+       {
             System.out.println(error);
        }
 
