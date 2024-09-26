@@ -27,6 +27,7 @@ public class Main {
             //Traversing the 2D maze
             if(traverse(maze, entrance[0], entrance[1])){
                 System.out.println("Maze solved!");
+                printMaze(maze);
             }
             else {
                 System.out.println("Solution not found.");
@@ -45,16 +46,27 @@ public class Main {
             for(int j = 0; j < maze[i].length; j++){
                 if(maze[i][j] == '+'){
                     start[0] = i;
-                    start[1] = j;
-                    System.out.println(i + " " + j);
+                    start[1] = j; 
                 }
             }
         }
         return start;
     }
+    public static void printMaze(char[][] maze) {
+        for(int row = 0; row < maze.length; row++)
+        {
+            System.out.println(maze[row]);
+        }
+    }
 
     public static boolean traverse(char[][] maze, int row, int col){
-        if(row<0 || col<0 || row>=maze.length || col>=maze[row].length || maze[row][col] == 'X' || maze[row][col] == '.' || (maze[row][col] == '+' && (row != entrance[0] && col != entrance[1])))
+        if(row == entrance[0] && col == entrance[1])
+        {
+            maze[row][col] = '*';
+        }
+        if(row<0 || col<0 || row>=maze.length || col>=maze[row].length 
+        || maze[row][col] == 'X' || maze[row][col] == '.' 
+        || maze[row][col] == '+')
         {
             return false;
         }
@@ -64,8 +76,8 @@ public class Main {
             return true;
         }
 
-        System.out.println(row + ", " + col);
-        if(maze[row][col] == ' ' || maze[row][col] == '+')
+        // System.out.println(row + ", " + col);
+        if(maze[row][col] == ' ' || maze[row][col] == '*')
         {   
             maze[row][col] = '+';
             if (traverse(maze, row + 1, col) ||   //DOWN
