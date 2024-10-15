@@ -33,6 +33,7 @@ public class Main {
             if(traverse(maze, entrance[0], entrance[1]))
             {
                 System.out.println("Maze solved!");
+                maze[entrance[0]][entrance[1]] = '+';
                 printMaze(maze); //printing the maze
             }
             else 
@@ -95,7 +96,8 @@ public class Main {
                 {    
                     return true; 
                 }
-                else{
+                else
+                {
                     maze[row][col] = '.';
                 } 
         }
