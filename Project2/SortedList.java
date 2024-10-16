@@ -21,47 +21,65 @@ public class SortedList<E extends Comparable<? super E>> extends List<E> {
     }
 
     public void insert(E data) {
-        Node<E> curr = head;
-        if() {
-
+        head = insertRecursive(head, data);
+    }
+    private Node<E> insertRecursive(Node<E> curr, E data) {
+        if(curr == null || data.compareTo(curr.data) < 0) {
+            Node<E> temp = new Node<E>(data);
+            temp.next = curr;
+            return temp;
         }
         else {
+            curr.next = insertRecursive(curr.next, data);
+            return curr;
+        }
+    }
 
-            insert(data);
+    public boolean search(E data) {
+        return searchRecursive(head, data);
+    }
+    private boolean searchRecursive(Node<E> curr, E data) {
+        if(curr == null) {
+            return false;
+        }
+        if(data.compareTo(curr.data) == 0) {
+            return true;
+        }
+        else {
+            return searchRecursive(curr.next, data);
+        }
+    }
+
+    public E retrieve(int index) {
+        int count = 0;
+        return retrieveRecursive(head, index, count);
+    }
+    private E retrieveRecursive(Node<E> curr, int index, int count) {
+        if(curr == null) {
+            return null;
+        }
+        if(count == index) {
+            return curr.data;
+        }
+        else {
+            return retrieveRecursive(curr.next, index, count+1);
         }
     }
 
     public void remove(E data) {
-        
+        head = removeRecursive(head, data);
     }
-
-    int count = 0;
-    public E retrieve(int index) {
-        Node<E> curr = head;
-        if(count == index)
-        {
-            return curr.data;
+    private Node<E> removeRecursive(Node<E> curr, E data) {
+        if(curr == null) {
+            return null;
         }
-        else
-        {
-            curr = curr.next;
-            head = curr;
-            count++;
-            retrieve(index);
-        }
-        return null;
-    }
-
-    public boolean search(E data) {
-        Node<E> curr = head;
-        if(curr.data == data) {
-            return true;
+        if(data.compareTo(curr.data) == 0) {
+            return curr.next;
         }
         else {
-            curr = curr.next;
-            head = curr;
-            search(data);
+            curr.next = removeRecursive(curr.next, data);
+            return curr;
         }
-        return false;
     }
+
 }
