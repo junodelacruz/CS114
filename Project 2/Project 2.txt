@@ -1,7 +1,0 @@
-think of sublists
-
-base case is if list is empty, if so return null or node
-
-remove() return curr or curr.next
-
-insert() return node or curr
