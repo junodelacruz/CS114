@@ -8,7 +8,7 @@ public class Sorts {
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(array, n, i);
         }
-    
+
         for (int i = n - 1; i > 0; i--) {
             T temp = array[0];
             array[0] = array[i];
@@ -21,11 +21,11 @@ public class Sorts {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
-    
+
         if (left < n && array[left].compareTo(array[largest]) > 0) {
             largest = left;
         }
-    
+
         if (right < n && array[right].compareTo(array[largest]) > 0) {
             largest = right;
         }
@@ -78,8 +78,7 @@ public class Sorts {
 
                 if (array[j - 1].compareTo(temp) > 0) {
                     array[j] = array[j - 1];
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -94,7 +93,7 @@ public class Sorts {
 
         if (array.length > 1) {
 
-            T[] left  = Arrays.copyOfRange(array, 0, array.length / 2);
+            T[] left = Arrays.copyOfRange(array, 0, array.length / 2);
             T[] right = Arrays.copyOfRange(array, array.length / 2, array.length);
 
             mergeSort(left);
@@ -105,8 +104,7 @@ public class Sorts {
             for (i = 0; i < array.length && l < left.length && r < right.length; ++i) {
                 if (left[l].compareTo(right[r]) <= 0) {
                     array[i] = left[l++];
-                }
-                else {
+                } else {
                     array[i] = right[r++];
                 }
             }
@@ -116,8 +114,7 @@ public class Sorts {
                     while (i < array.length) {
                         array[i++] = left[l++];
                     }
-                }
-                else {
+                } else {
                     while (i < array.length) {
                         array[i++] = right[r++];
                     }
