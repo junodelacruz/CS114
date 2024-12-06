@@ -6,7 +6,21 @@ BINARY SEARCH TREE:
         4. data(value)
     methods:
         insert 
+            inserMethod(curr, data) where curr is the current node with attributes data, left, and 
+            right and data which is the value we wish to insert. 
+            first case: if curr is an empty value (the tree is completely empty which is the base case), 
+            we can return a node with data as the value. this will become the first node in the binary search tree.
+            the second case: if data is greater or equal to curr.data. if so, we dont even need to check if it is 
+            a leaf node. this is because the first check in our function is if it is null. all we need to do is 
+            call the function recursively and pass curr.right so that it can be checked and inserted. the same 
+            applies for the left side.
         remove
+            to remove a node, we first need to find the node. in order to find a node, we must traverse through the 
+            tree and find one that matches the data. in order to remove a node recursively, we can probably skip the node 
+            by using curr.left or curr.right as we are returning nodes in the removeMethod. our base case would be if we have a match. 
+            however, what if we want to remove the root node? we then need to check for the iop (in order precedence) which is the value 
+            in the left subtree, at the bottom rightmost value. the iop will become the new root. i should probably make another
+            method to findIOP. 
         search
     by definition (properties):
         sorted in increasing numerical order (right node is higher than left node)
