@@ -21,12 +21,15 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
             return insertMethod(curr.right, data);
         }
     }
+    public Node<E> findIOP(Node<E> curr){
+        
+    }
     public void remove(E data){
         root = removeMethod(root, data);
     }
     public Node<E> removeMethod(Node<E> curr, E data){
         if(curr.data == data){
-            //return findIOP() <-- returns a node
+            return findIOP(curr.left);
         }
     }
     public int search(E data){
