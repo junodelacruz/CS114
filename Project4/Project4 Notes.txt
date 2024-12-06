@@ -1,0 +1,13 @@
+BINARY SEARCH TREE:
+    attributes: 
+        1. root(node) 
+        2. left(node) 
+        3. right(node) 
+        4. data(value)
+    methods:
+        insert 
+        remove
+        search
+    by definition (properties):
+        sorted in increasing numerical order (right node is higher than left node)
+        balanced (height of left and right subtrees differ no more than 1)

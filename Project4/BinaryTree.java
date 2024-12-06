@@ -15,7 +15,7 @@ public abstract class BinaryTree<E> implements Iterable<E> {
 
     public abstract void insert(E data);
     public abstract void remove(E data);
-    public abstract boolean search(E data);
+    public abstract int search(E data);
 
     protected Node<E> root;
 }
