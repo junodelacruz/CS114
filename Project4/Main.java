@@ -1,4 +1,6 @@
 package Project4;
+import Project4.BinaryTree;
+import Project4.BinarySearchTree;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;;
@@ -29,13 +31,13 @@ public class Main {
         for (int i = 0; i < num; ++i) {
             int n = rand.nextInt(num);
             tree.search(n);
-            System.out.println(n + (tree.search(n) ? " " : " not ") + "found");
+            System.out.println(n + (tree.search(n) == 1 ? " " : " not ") + "found");
         }
         System.out.println();
         for (int i = 0; i < num / 2; ++i) {
             int n = rand.nextInt(num);
             tree.search(n);
-            System.out.println(n + (tree.search(n) ? " " : " not ") + "found");
+            System.out.println(n + (tree.search(n) == 1 ? " " : " not ") + "found");
         }
         stop = System.currentTimeMillis();
         System.out.println(stop - start);
